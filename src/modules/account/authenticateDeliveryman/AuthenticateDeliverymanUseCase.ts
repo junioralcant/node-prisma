@@ -2,36 +2,39 @@ import { compare } from 'bcrypt';
 import { sign } from 'jsonwebtoken';
 import { prisma } from '../../../database/prismaClient';
 
-interface IAuthenicateClient {
+interface IAuthenicateDeliveryman {
   username: string;
   password: string;
 }
 
-export class AuthencateClientUseCase {
-  async execute({ username, password }: IAuthenicateClient) {
-    const client = await prisma.clients.findFirst({
+export class AuthenticateDeliverymanUseCase {
+  async execute({ username, password }: IAuthenicateDeliveryman) {
+    const deliveryman = await prisma.deliveryman.findFirst({
       where: {
         username,
       },
     });
 
-    if (!client) {
+    if (!deliveryman) {
       throw new Error('Username or password invalid!');
     }
 
-    const passwordMatch = await compare(password, client.password);
+    const passwordMatch = await compare(
+      password,
+      deliveryman.password
+    );
 
     if (!passwordMatch) {
       throw new Error('Username or password invalid!');
     }
 
-    const clienteId = client.id;
+    const deliverymanId = deliveryman.id;
 
     const token = sign(
-      { username, clienteId },
-      'bc7177981f37d2e86e6f23d1a82bf437',
+      { username, deliverymanId },
+      'bc7155981f37d2e86e6f23d1a82bf437',
       {
-        subject: clienteId,
+        subject: deliverymanId,
         expiresIn: '7d',
       }
     );
