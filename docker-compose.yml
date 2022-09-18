@@ -13,6 +13,17 @@ services:
       - POSTGRES_DB=node_prisma
     volumes:
       - pgdata:/data/
+  app:
+    build: .
+    container_name: node_prisma
+    ports:
+      - 3333:3333
+    volumes:
+      - .:/usr/app
+    links:
+      - database_node_prisma
+    depends_on:
+      - database_node_prisma
       
 volumes:
   pgdata:
