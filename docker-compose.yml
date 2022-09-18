@@ -12,14 +12,17 @@ services:
       - POSTGRES_PASSWORD=toor
       - POSTGRES_DB=node_prisma
     volumes:
-      - pgdata:/data/
+      - pgdata:/data/postgres
   app:
     build: .
     container_name: node_prisma
     ports:
       - 3333:3333
+    environment:
+      DATABASE_URL: "postgresql://root:toor@database_node_prisma:5432/node_prisma?schema=public"
     volumes:
       - .:/usr/app
+      - /usr/app/node_modules/bcrypt/
     links:
       - database_node_prisma
     depends_on:
