@@ -3,6 +3,7 @@ import { AutheticateClientController } from './modules/account/authenticateClien
 import { CreateClientController } from './modules/clients/useCases/createClient/CreateClientController';
 import { CreateDeliverymanController } from './modules/deliveryman/useCases/createDeliveryman/CreateDeliverymanController';
 import { AuthenticateDeliverymanController } from './modules/account/authenticateDeliveryman/AuthenticateDeliverymanController';
+import { CreateDeliveryController } from './modules/deliveries/useCases/CreateDeliveryController';
 
 const routes = Router();
 
@@ -12,6 +13,7 @@ const authenticateClientController =
 const createDeliverymanController = new CreateDeliverymanController();
 const authenticateDeliverymanController =
   new AuthenticateDeliverymanController();
+const createDeliveryController = new CreateDeliveryController();
 
 routes.post('/client', createClienteController.handler);
 routes.post(
@@ -24,5 +26,7 @@ routes.post(
 );
 
 routes.post('/deliveryman', createDeliverymanController.handler);
+
+routes.post('/delivery', createDeliveryController.handler);
 
 export { routes };
