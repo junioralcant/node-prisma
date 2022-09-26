@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { CreateClientUseCase } from './CreateClientUseCase';
 
 export class CreateClientController {
-  async handler(request: Request, response: Response) {
+  async handle(request: Request, response: Response) {
     const { username, password } = request.body;
 
     console.log(request.body);

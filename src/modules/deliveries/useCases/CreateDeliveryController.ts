@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { CreateDeliveryUseCases } from './CreateDeliveryUseCases';
 
 export class CreateDeliveryController {
-  async handler(request: Request, response: Response) {
+  async handle(request: Request, response: Response) {
     const { item_name } = request.body;
     const { id_client } = request;
 
