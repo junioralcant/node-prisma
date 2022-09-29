@@ -5,15 +5,13 @@ export class CreateClientController {
   async handle(request: Request, response: Response) {
     const { username, password } = request.body;
 
-    console.log(request.body);
-
     const createClientUseCase = new CreateClientUseCase();
 
-    const result = await createClientUseCase.execute({
+    await createClientUseCase.execute({
       username,
       password,
     });
 
-    return response.json(result);
+    return response.status(201).send();
   }
 }
