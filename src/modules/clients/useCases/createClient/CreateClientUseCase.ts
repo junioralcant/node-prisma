@@ -1,18 +1,13 @@
 import { hash } from 'bcrypt';
-import { prisma } from '../../../../database/prismaClient';
+import { ICreateClientDTO } from '../../dtos/ICreateClientsDTO';
 import { ClientsRepsoitories } from '../../repositories/implementations/ClientsRepositories';
-
-interface ICreateClient {
-  username: string;
-  password: string;
-}
 
 export class CreateClientUseCase {
   constructor(
     private clientsRepositories = new ClientsRepsoitories()
   ) {}
 
-  async execute({ username, password }: ICreateClient) {
+  async execute({ username, password }: ICreateClientDTO) {
     const clientExist = await this.clientsRepositories.findByUsername(
       username
     );
