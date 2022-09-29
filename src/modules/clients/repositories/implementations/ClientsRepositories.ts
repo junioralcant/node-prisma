@@ -1,8 +1,9 @@
 import { Clients } from '@prisma/client';
 import { prisma } from '../../../../database/prismaClient';
 import { ICreateClientDTO } from '../../dtos/ICreateClientsDTO';
+import { IClientRepository } from '../IClientsRepository';
 
-class ClientsRepsoitories {
+class ClientsRepsoitories implements IClientRepository {
   async create({
     username,
     password,
@@ -24,7 +25,6 @@ class ClientsRepsoitories {
         },
       },
     });
-
     return clientExist;
   }
 }
