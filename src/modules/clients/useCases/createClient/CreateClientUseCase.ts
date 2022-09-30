@@ -1,10 +1,10 @@
 import { hash } from 'bcrypt';
 import { ICreateClientDTO } from '../../dtos/ICreateClientsDTO';
-import { ClientsRepsoitories } from '../../repositories/implementations/ClientsRepositories';
+import { ClientsRepository } from '../../repositories/implementations/ClientsRepository';
 
 export class CreateClientUseCase {
   constructor(
-    private clientsRepositories = new ClientsRepsoitories()
+    private clientsRepositories = new ClientsRepository()
   ) {}
 
   async execute({ username, password }: ICreateClientDTO) {

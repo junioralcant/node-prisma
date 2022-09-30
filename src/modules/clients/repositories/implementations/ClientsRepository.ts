@@ -3,7 +3,7 @@ import { prisma } from '../../../../database/prismaClient';
 import { ICreateClientDTO } from '../../dtos/ICreateClientsDTO';
 import { IClientRepository } from '../IClientsRepository';
 
-class ClientsRepsoitories implements IClientRepository {
+class ClientsRepository implements IClientRepository {
   async create({
     username,
     password,
@@ -29,4 +29,4 @@ class ClientsRepsoitories implements IClientRepository {
   }
 }
 
-export { ClientsRepsoitories };
+export { ClientsRepository };
