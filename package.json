@@ -4,8 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "ts-node-dev --inspect=0.0.0.0:9229 --exit-child --transpile-only --ignore-watch node_modules --respawn src/server.ts",
+    "dev": "ts-node-dev --inspect=0.0.0.0:9229 --exit-child --transpile-only --ignore-watch node_modules --respawn src/shared/infra/http/server.ts",
     "test": "jest"
+  },
+  "prisma": {
+    "schema": "src/shared/infra/prisma/schema.prisma"
   },
   "keywords": [],
   "author": "",

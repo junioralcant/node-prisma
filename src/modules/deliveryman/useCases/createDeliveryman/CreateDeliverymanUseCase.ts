@@ -1,5 +1,6 @@
 import { hash } from 'bcrypt';
 import { prisma } from '../../../../database/prismaClient';
+import { DeliverymanRepository } from '../../infra/prisma/repositories/DeliverymanRepository';
 
 interface ICreateDeliveryman {
   username: string;
@@ -7,15 +8,12 @@ interface ICreateDeliveryman {
 }
 
 export class CreateDeliverymanUseCase {
+  constructor(
+    private deliverymanRepository = new DeliverymanRepository()
+  ) {}
   async execute({ username, password }: ICreateDeliveryman) {
-    const deliverymanExist = await prisma.deliveryman.findFirst({
-      where: {
-        username: {
-          equals: username,
-          mode: 'insensitive',
-        },
-      },
-    });
+    const deliverymanExist =
+      await this.deliverymanRepository.findByUserName(username);
 
     if (deliverymanExist) {
       throw new Error('Deliveryman already exists.');
@@ -23,11 +21,9 @@ export class CreateDeliverymanUseCase {
 
     const hashPassword = await hash(password, 10);
 
-    const deliveryman = await prisma.deliveryman.create({
-      data: {
-        username,
-        password: hashPassword,
-      },
+    const deliveryman = this.deliverymanRepository.create({
+      username,
+      password: hashPassword,
     });
 
     return deliveryman;
