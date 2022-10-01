@@ -1,6 +1,6 @@
-import { Clients } from '@prisma/client';
 import { prisma } from '../../../../database/prismaClient';
 import { ICreateClientDTO } from '../../dtos/ICreateClientsDTO';
+import { Client } from '../../entities/Client';
 import { IClientRepository } from '../IClientsRepository';
 
 class ClientsRepository implements IClientRepository {
@@ -16,7 +16,7 @@ class ClientsRepository implements IClientRepository {
     });
   }
 
-  async findByUsername(username: string): Promise<Clients | null> {
+  async findByUsername(username: string): Promise<Client | null> {
     const clientExist = await prisma.clients.findFirst({
       where: {
         username: {
@@ -25,7 +25,7 @@ class ClientsRepository implements IClientRepository {
         },
       },
     });
-    return clientExist;
+    return clientExist as Client;
   }
 }
 

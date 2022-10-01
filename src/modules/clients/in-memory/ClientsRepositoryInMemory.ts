@@ -1,19 +1,19 @@
-import { Clients } from '@prisma/client';
 import { ICreateClientDTO } from '../dtos/ICreateClientsDTO';
 import { IClientRepository } from '../repositories/IClientsRepository';
-import { v4 as uuid } from 'uuid';
+import { Client } from '../entities/Client';
 
 class ClientsRepositoryInMemory implements IClientRepository {
-  clients: Clients[] = [];
+  clients: Client[] = [];
 
   async create({
     username,
     password,
   }: ICreateClientDTO): Promise<void> {
-    const client = Object.assign(
-      {},
+    const client = new Client({ username, password });
+
+    Object.assign(
+      { client },
       {
-        id: uuid(),
         username,
         password,
       }
@@ -22,12 +22,12 @@ class ClientsRepositoryInMemory implements IClientRepository {
     this.clients.push(client);
   }
 
-  async findByUsername(username: string): Promise<Clients | null> {
+  async findByUsername(username: string): Promise<Client | null> {
     const client = this.clients.find(
       (client) => client.username === username
     );
 
-    return client as Clients;
+    return client as Client;
   }
 }
 
