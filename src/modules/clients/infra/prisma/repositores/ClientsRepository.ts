@@ -1,7 +1,7 @@
-import { prisma } from '../../../../database/prismaClient';
-import { ICreateClientDTO } from '../../dtos/ICreateClientsDTO';
-import { Client } from '../../entities/Client';
-import { IClientRepository } from '../IClientsRepository';
+import { prisma } from '../../../../../database/prismaClient';
+import { ICreateClientDTO } from '../../../dtos/ICreateClientsDTO';
+import { Client } from '../../../entities/Client';
+import { IClientRepository } from '../../../repositories/IClientsRepository';
 
 class ClientsRepository implements IClientRepository {
   async create({

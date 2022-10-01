@@ -1,6 +1,6 @@
 import { hash } from 'bcrypt';
 import { ICreateClientDTO } from '../../dtos/ICreateClientsDTO';
-import { ClientsRepository } from '../../repositories/implementations/ClientsRepository';
+import { ClientsRepository } from '../../infra/prisma/repositores/ClientsRepository';
 
 export class CreateClientUseCase {
   constructor(
