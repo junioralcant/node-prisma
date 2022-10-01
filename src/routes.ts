@@ -28,6 +28,14 @@ const findAllDeliveriesDeliverymanController =
   new FindAllDeliveriesDeliverymanController();
 const updateEndDateController = new UpdateEndDateController();
 
+routes.get('/swagger', (resquest, response) => {
+  return response.sendFile(process.cwd() + '/swagger.json');
+});
+
+routes.get('/docs', (resquest, response) => {
+  return response.sendFile(process.cwd() + '/index.html');
+});
+
 routes.post('/client', createClienteController.handle);
 routes.post(
   '/client/authenticate',

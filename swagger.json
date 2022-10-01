@@ -1,0 +1,66 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API delivery",
+        "description": "Essa API é uma API de estudo. Onde temos as entidades cliente e entregador",
+        "contact": {
+            "name": "Support",
+            "email": "junioralcant1111@gmail.com"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "tags": ["Client"],
+        "/client": {
+            "post": {
+                "description": "Create new client",
+                "requestBody": {
+                    "description": "Data to create a new client",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RequestClient"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Registration successful"
+                    },
+                    "400": {
+                        "description": "Client already exists."
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "RequestClient": {
+                "type": "object",
+                "properties": {
+                    "username": {
+                        "type": "string",
+                        "description": "Username client",
+                        "example": "jrmarques"
+                    },
+                    "password": {
+                        "type": "string",
+                        "description": "Password client",
+                        "example": "1234"
+                    }
+                },
+                "required": ["username", "password"]
+            }
+        },
+        "securitySchemes": {
+           "bearerAuth": {
+                "description": "JWT authentication",
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
+           }
+        }
+    }
+}
