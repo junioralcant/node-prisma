@@ -11,9 +11,9 @@ class Deliveryman {
   username: string;
   password?: string;
 
-  constructor() {
-    this.username = '';
-    this.password = '';
+  constructor({ username, password }: IDeliverymanProps) {
+    this.username = username;
+    this.password = password;
 
     if (!this.id) {
       this.id = uuid();

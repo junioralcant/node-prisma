@@ -1,5 +1,4 @@
 import { hash } from 'bcrypt';
-import { prisma } from '../../../../database/prismaClient';
 import { DeliverymanRepository } from '../../infra/prisma/repositories/DeliverymanRepository';
 
 interface ICreateDeliveryman {
