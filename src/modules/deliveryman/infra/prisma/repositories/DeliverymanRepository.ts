@@ -1,5 +1,3 @@
-import { hash } from 'bcrypt';
-
 import { prisma } from '../../../../../database/prismaClient';
 import { ICreateDeliveryDTO } from '../../../dtos/ICreateDeliverymanDTO';
 import { Deliveryman } from '../../../entities/Deliveryman';
@@ -29,6 +27,23 @@ class DeliverymanRepository implements IDeliverymanRepository {
     });
 
     return deliverymanExist as Deliveryman;
+  }
+
+  async findAllDeliveriesFromDeliveryman(
+    id_deliveryman: string
+  ): Promise<Deliveryman[]> {
+    const deliveries = await prisma.deliveryman.findMany({
+      where: {
+        id: id_deliveryman,
+      },
+      select: {
+        deliveries: true,
+        id: true,
+        username: true,
+      },
+    });
+
+    return deliveries;
   }
 }
 
