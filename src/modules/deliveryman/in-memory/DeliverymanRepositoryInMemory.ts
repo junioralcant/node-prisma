@@ -32,7 +32,11 @@ class DeliverymanRepositoryInMemory
   async findAllDeliveriesFromDeliveryman(
     id_deliveryman: string
   ): Promise<Deliveryman[]> {
-    return this.deliverymans;
+    let deliveyman = this.deliverymans.find(
+      (deliveryman) => deliveryman.id === id_deliveryman
+    );
+
+    return [deliveyman] as Deliveryman[];
   }
 }
 
