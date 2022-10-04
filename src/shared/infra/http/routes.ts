@@ -1,9 +1,10 @@
 import { Router } from 'express';
+
 import { AutheticateClientController } from '../../../modules/account/useCases/authenticateClient/AutheticateClientController';
 import { CreateClientController } from '../../../modules/clients/useCases/createClient/CreateClientController';
 import { CreateDeliverymanController } from '../../../modules/deliveryman/useCases/createDeliveryman/CreateDeliverymanController';
 import { AuthenticateDeliverymanController } from '../../../modules/account/useCases/authenticateDeliveryman/AuthenticateDeliverymanController';
-import { CreateDeliveryController } from '../../../modules/deliveries/useCases/CreateDeliveryController';
+import { CreateDeliveryController } from '../../../modules/deliveries/useCases/createDelivery/CreateDeliveryController';
 import { ensureAuthenticateClient } from './middlewares/ensureAuthenticateClient';
 import { FindAllAvailableController } from '../../../modules/deliveries/useCases/findAllAvailable/FindAllAvailableController';
 import { ensureAuthenticateDeliveryman } from './middlewares/ensureAuthenticateDeliveryman';
