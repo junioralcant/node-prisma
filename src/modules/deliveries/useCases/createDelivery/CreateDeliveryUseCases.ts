@@ -1,4 +1,3 @@
-import { prisma } from '../../../../database/prismaClient';
 import { DeliveriesRepository } from '../../infra/prisma/repositores/DeliveriesRepository';
 
 interface ICreateDelivery {

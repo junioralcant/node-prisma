@@ -1,21 +1,21 @@
 import { v4 as uuid } from 'uuid';
 
 interface IDeliveryProps {
-  id: string;
+  id?: string;
   id_client: string;
-  id_deliveryman: string;
+  id_deliveryman?: string;
   item_name: string;
   create_at?: Date;
-  end_at: Date;
+  end_at?: Date;
 }
 
 class Delivery {
   id?: string;
   id_client: string;
-  id_deliveryman: string;
+  id_deliveryman?: string;
   item_name: string;
   create_at?: Date;
-  end_at: Date;
+  end_at?: Date;
 
   constructor({
     id,
@@ -32,6 +32,10 @@ class Delivery {
 
     if (!this.id) {
       this.id = uuid();
+    }
+
+    if (!this.create_at) {
+      this.create_at = new Date();
     }
   }
 }
