@@ -1,13 +1,13 @@
-import { prisma } from '../../../../database/prismaClient';
+import { DeliveriesRepository } from '../../infra/prisma/repositores/DeliveriesRepository';
 
 export class FindAllAvailableUseCase {
+  constructor(
+    private deliveriesRepository = new DeliveriesRepository()
+  ) {}
+
   async execute() {
-    const deliveries = await prisma.deliveries.findMany({
-      where: {
-        end_at: null,
-        id_deliveryman: null,
-      },
-    });
+    const deliveries =
+      await this.deliveriesRepository.findAllAvailable();
 
     return deliveries;
   }
