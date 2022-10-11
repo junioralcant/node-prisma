@@ -1,5 +1,6 @@
 import { prisma } from '../../../../../database/prismaClient';
 import { ICreateDeliveriesDTO } from '../../../dtos/ICreateDeliveriesDTO';
+import { IUpdateDeliveryDTO } from '../../../dtos/IUpdateDeliveryDTO';
 import { Delivery } from '../../../entities/Delivery';
 import { IDeliveriesRepository } from '../../../repositories/IDeliveriesRepository';
 
@@ -27,6 +28,22 @@ class DeliveriesRepository implements IDeliveriesRepository {
     });
 
     return deliveries as Delivery[];
+  }
+
+  async updateDeliveryman({
+    id_delivery,
+    id_deliveryman,
+  }: IUpdateDeliveryDTO): Promise<Delivery> {
+    const result = await prisma.deliveries.update({
+      where: {
+        id: id_delivery,
+      },
+      data: {
+        id_deliveryman,
+      },
+    });
+
+    return result as Delivery;
   }
 }
 
